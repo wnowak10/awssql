@@ -32,7 +32,7 @@ twitter_stream = twitter.TwitterStream(auth=twitter_auth)
 statuses = twitter_stream.statuses.filter(track=TRACK)
 
 for t in statuses:
-    new_tweet = Tweet(data = json.dumps(t))
+    new_tweet = Tweet(data = t)
     session.add(new_tweet)
     session.commit()
     print(t)
