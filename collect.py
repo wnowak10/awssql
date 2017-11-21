@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from secrets import *
 from initialize import Tweet
 import json
+import twitter
 
 Base = declarative_base()
 
@@ -20,7 +21,6 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-import twitter
 
 TRACK = 'teaching'
 
@@ -32,8 +32,7 @@ twitter_stream = twitter.TwitterStream(auth=twitter_auth)
 statuses = twitter_stream.statuses.filter(track=TRACK)
 
 for t in statuses:
-     new_tweet = Tweet(data = json.dumps(t))
-   # new_tweet = Tweet(data = t)
+    new_tweet = Tweet(data = json.dumps(t))
     session.add(new_tweet)
     session.commit()
     print(t)

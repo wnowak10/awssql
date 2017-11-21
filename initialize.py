@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
 from sqlalchemy import JSON
 # http://www.pythoncentral.io/introductory-tutorial-python-sqlalchemy/
+from secrets import link
 
 Base = declarative_base()
 
@@ -14,7 +15,9 @@ class Tweet(Base):
     # data = Column(Text, nullable=False)
     data = Column(JSON)
 
+engine = create_engine('postgresql://tweetsql:tweetsql@'+ link) 
 
-engine = create_engine('postgresql://tweetsql:tweetsql@tweetsql.cggizg1efi9f.us-east-1.rds.amazonaws.com/tweetsql')
+
+# engine = create_engine('postgresql://tweetsql:tweetsql@tweetsql.cggizg1efi9f.us-east-1.rds.amazonaws.com/tweetsql')
 
 Base.metadata.create_all(engine)

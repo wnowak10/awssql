@@ -1,0 +1,3 @@
+twitter
+sqlalchemy
+psycopg2
